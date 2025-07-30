@@ -1,7 +1,6 @@
-## Minecraft Atlas and NBT Generator&Assembler (mana) 
+## Minecraft Atlas and NBT Generator&Assembler (MANA) 
 ### Introduce
-Mana is a Python-based automated processing tool.
-It can split the video and convert to Minecraft map format (i.e. NBT) in batches.
+**MANA** is a Python tool designed to process videos and convert them into Minecraft map files (NBT format) in batches.
 ### Installation
 1. Clone the git repository
 2. Install depends:

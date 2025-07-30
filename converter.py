@@ -1,5 +1,3 @@
-
-
 import json
 import numpy as np
 from PIL import Image
@@ -113,16 +111,16 @@ def create_full_color_lookup_table():
         full_colors_rgb (np.ndarray): 形状为 (256, 3) 的 float32 数组，值范围 0-1。
         index_to_bm (list of tuples): 长度为 256 的列表，每个元素是 (base_color, modifier)。
     """
-    full_colors_rgb = []
-    index_to_bm = []
+    full_colors_rgb = np.zeros((256, 3), dtype=np.float32)
+    index_to_bm = np.zeros((256, 2), dtype=np.uint8)
     for base_color in range(64):
         base_rgb = np.array(MC_BASIC_COLORS_RGB[base_color], dtype=np.float32) / 255.0
         for modifier in range(4):
+            index = base_color * 4 + modifier
             factor = MODIFIER_FACTORS[modifier]
-            final_rgb = base_rgb * factor
-            full_colors_rgb.append(final_rgb)
-            index_to_bm.append((base_color, modifier))
-    return np.array(full_colors_rgb, dtype=np.float32), index_to_bm
+            full_colors_rgb[index] = base_rgb * factor
+            index_to_bm[index] = [base_color, modifier]
+    return full_colors_rgb, index_to_bm
 
 
 # 在模块加载时创建一次查找表
